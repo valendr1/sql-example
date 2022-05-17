@@ -1,18 +1,25 @@
-import db.DataSourceProvider;
+import db.AccountRepository;
+import db.impl.PostgresAccountRepository;
 import entity.AccountEntity;
-import org.springframework.jdbc.core.JdbcTemplate;
 
 import javax.swing.*;
 
 public class Main {
+    static AccountRepository accountRepository = new PostgresAccountRepository();
     public static void main(String[] args) {
-        JdbcTemplate template = new JdbcTemplate(DataSourceProvider.INSTANCE.getDataSource());
         String accountName = JOptionPane.showInputDialog("Введите ваше имя:");
-        int balance = Integer.parseInt(JOptionPane.showInputDialog("Введите баланс:"));
-        AccountEntity account = new AccountEntity().setId(4).setName(accountName).setValue(balance);
-        template.update("INSERT INTO account (id, name , value) values(? , ?, ?)",
-                account.getId(),account.getName(),account.getValue());
+        AccountEntity workAccount = accountRepository.getByName(accountName);
+        if (workAccount==null) {
+            int balance = Integer.parseInt(JOptionPane.showInputDialog("Введите баланс:"));
 
+            AccountEntity account = new AccountEntity().
+                    setName(accountName).
+                    setValue(balance);
 
+            accountRepository.addAccount(account);
+            System.out.println("В базу данных добавлен пользователь с именем: " + accountName);
+        }else {
+            System.out.println("В базе данных уже есть пользователь с таким именем");
+        }
     }
 }

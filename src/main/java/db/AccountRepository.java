@@ -7,5 +7,6 @@ import java.util.List;
 public interface AccountRepository {
 
     List<AccountEntity> getAll();
-    AccountEntity getByName();
+    AccountEntity getByName(String accountName);
+    void addAccount(AccountEntity account);
 }
