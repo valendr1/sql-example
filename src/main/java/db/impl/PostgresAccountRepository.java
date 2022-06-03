@@ -33,4 +33,9 @@ public class PostgresAccountRepository implements AccountRepository {
         template.update("INSERT INTO account (id, name , value) values(? , ?, ?)",
                 account.getId(), account.getName(), account.getValue());
     }
+
+    @Override
+    public void updateAccount(AccountEntity account) {
+        template.update("UPDATE account SET name = ?, value = ?", account.getName(), account.getValue());
+    }
 }
