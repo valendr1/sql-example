@@ -30,12 +30,13 @@ public class PostgresAccountRepository implements AccountRepository {
 
     @Override
     public void addAccount(AccountEntity account) {
-        template.update("INSERT INTO account (id, name , value) values(? , ?, ?)",
-                account.getId(), account.getName(), account.getValue());
+        template.update("INSERT INTO account (name , value) values(?, ?)",
+                account.getName(), account.getValue());
     }
 
     @Override
     public void updateAccount(AccountEntity account) {
-        template.update("UPDATE account SET name = ?, value = ?", account.getName(), account.getValue());
+        template.update("UPDATE account SET name = ?, value = ? WHERE name = ?",
+                account.getName(), account.getValue(), account.getName());
     }
 }
