@@ -6,7 +6,7 @@ public class SpendEntity {
     private int id;
     private int accountId;
     private Category spendCategory;
-    private int spend;
+    private long spend;
     private String description;
 
     public int getId() {
@@ -36,11 +36,11 @@ public class SpendEntity {
         return this;
     }
 
-    public int getSpend() {
+    public long getSpend() {
         return spend;
     }
 
-    public SpendEntity setSpend(int spend) {
+    public SpendEntity setSpend(long spend) {
         this.spend = spend;
         return this;
     }

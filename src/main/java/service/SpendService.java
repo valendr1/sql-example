@@ -28,7 +28,7 @@ public class SpendService {
         );
 
         Category selected = Category.values()[index];
-        int spendValue = Integer.parseInt(
+        long spendValue = Long.parseUnsignedLong(
                 JOptionPane.showInputDialog("Введите размер траты")
         );
         String desc = JOptionPane.showInputDialog("Введите описание траты");
@@ -63,7 +63,7 @@ public class SpendService {
         JOptionPane.showMessageDialog(null, new JScrollPane(table));
     }
 
-    private boolean isSpendAcceptedForGivenUser(AccountEntity givenUser, int spend) {
+    private boolean isSpendAcceptedForGivenUser(AccountEntity givenUser, long spend) {
         if (spend <= 0) {
             return false;
         }

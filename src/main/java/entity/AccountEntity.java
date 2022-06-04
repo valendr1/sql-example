@@ -3,7 +3,7 @@ package entity;
 public class AccountEntity {
     private int id;
     private String name;
-    private int value;
+    private long value;
 
     public int getId() {
         return id;
@@ -23,11 +23,11 @@ public class AccountEntity {
         return this;
     }
 
-    public int getValue() {
+    public long getValue() {
         return value;
     }
 
-    public AccountEntity setValue(int value) {
+    public AccountEntity setValue(long value) {
         this.value = value;
         return this;
     }
